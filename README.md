@@ -2,10 +2,12 @@
 
 A simple JS library to convert Avro Schemas to TypeScript interfaces.
 
+This is a fork of [@joewood's version](https://github.com/joewood/avro-typescript) including the latest changes from that repo (which haven't been published since 2020) and 1 change. Instead of `Buffer` for `bytes`, we use `Uint8Array`.
+
 ## Install
 
 ```
-npm install avro-typescript
+npm install @chmac/avro-typescript
 ```
 
 The library can be run in node.js or the browser. It takes a Avro Schema as a JavaScript object (from JSON) and returns the TypeScript code as a string.
