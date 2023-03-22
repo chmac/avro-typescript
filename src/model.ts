@@ -40,6 +40,11 @@ export interface MapType extends BaseType {
   values: Type;
 }
 
+export interface UnionOfRecordsType {
+  name: string;
+  type: RecordType[];
+}
+
 export interface EnumType extends BaseType {
   type: "enum";
   name: string;
@@ -72,6 +77,20 @@ export function isEnumType(type: BaseType): type is EnumType {
 
 export function isUnion(type: Type): type is NamedType[] {
   return type instanceof Array;
+}
+
+export function isUnionOfRecordsType(
+  type: UnionOfRecordsType | BaseType
+): type is UnionOfRecordsType {
+  if (!Array.isArray(type.type)) {
+    return false;
+  }
+  for (const t of type.type) {
+    if (!isRecordType(t)) {
+      return false;
+    }
+  }
+  return true;
 }
 
 export function isOptional(type: Type): boolean {

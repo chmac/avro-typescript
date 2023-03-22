@@ -19,11 +19,12 @@ import {
   isEnumType,
   isLogicalType,
   isMapType,
-  isOptional,
   isRecordType,
+  isUnionOfRecordsType,
   RecordType,
   Schema,
   Type,
+  UnionOfRecordsType,
 } from "./model";
 
 /** Convert a primitive type from avro to TypeScript */
@@ -52,6 +53,8 @@ export function avroToTypeScript(
 ): string {
   const output: string[] = [];
   if (isEnumType(schema)) convertEnum(schema, output);
+  else if (isUnionOfRecordsType(schema))
+    convertUnionOfRecords(schema, output, opts);
   else if (isRecordType(schema)) convertRecord(schema, output, opts);
   else throw "Unknown top level type " + (schema as unknown)["type"];
   return output.join("\n");
@@ -79,6 +82,23 @@ export function convertEnum(enumType: EnumType, fileBuffer: string[]): string {
     .join(", ")} };\n`;
   fileBuffer.push(enumDef);
   return enumType.name;
+}
+
+/** Convert an Avro Union type. Return the name, but add the definition to the file */
+export function convertUnionOfRecords(
+  unionType: UnionOfRecordsType,
+  fileBuffer: string[],
+  opts: ConversionOptions
+): string {
+  convertType(unionType.type, fileBuffer, opts);
+
+  // Add a `type Foo = Bar | Baz` to join the union
+  const subTypeNames = unionType.type.map((t) => t.name);
+  fileBuffer.push(
+    `export type ${unionType.name} = ${subTypeNames.join(" | ")}`
+  );
+
+  return unionType.name;
 }
 
 export function convertType(
