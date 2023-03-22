@@ -1,53 +1,53 @@
 {
-    "name": "@chmac/avro-typescript",
-    "version": "2.0.3",
-    "description": "TypeScript code generator for Apache Avro types (with support for top level unions",
-    "main": "./lib/index.js",
-    "typings": "lib/index.d.ts",
-    "files": [
-        "lib"
-    ],
-    "directories": {
-        "test": "test"
+  "name": "@chmac/avro-typescript",
+  "version": "2.0.3",
+  "description": "TypeScript code generator for Apache Avro types (with support for top level unions",
+  "main": "./lib/index.js",
+  "typings": "lib/index.d.ts",
+  "files": [
+    "lib"
+  ],
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test-update": "jest -u",
+    "test": "jest",
+    "build": "tsc",
+    "deploy": "npm run build && npm publish --access=public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chmac/avro-typescript.git"
+  },
+  "readme": "README.md",
+  "types": "./lib/index.d.ts",
+  "keywords": [
+    "avro",
+    "typescript"
+  ],
+  "author": "Joe Wood",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/chmac/avro-typescript/issues"
+  },
+  "homepage": "https://github.com/chmc/avro-typescript#readme",
+  "devDependencies": {
+    "@types/jest": "^26.0.13",
+    "@types/node": "^14.6.4",
+    "jest": "^26.4.2",
+    "ts-jest": "^26.3.0",
+    "typescript": "^4.0.2"
+  },
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
     },
-    "scripts": {
-        "test-update": "jest -u",
-        "test": "jest",
-        "build": "tsc",
-        "deploy": "npm run build && npm publish --access=public"
-    },
-    "repository": {
-        "type": "git",
-        "url": "git+https://github.com/chmac/avro-typescript.git"
-    },
-    "readme": "README.md",
-    "types": "./lib/index.d.ts",
-    "keywords": [
-        "avro",
-        "typescript"
-    ],
-    "author": "Joe Wood",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/chmac/avro-typescript/issues"
-    },
-    "homepage": "https://github.com/chmc/avro-typescript#readme",
-    "devDependencies": {
-        "@types/jest": "^26.0.13",
-        "@types/node": "^14.6.4",
-        "jest": "^26.4.2",
-        "ts-jest": "^26.3.0",
-        "typescript": "^4.0.2"
-    },
-    "jest": {
-        "transform": {
-            ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
-        },
-        "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
-        "moduleFileExtensions": [
-            "ts",
-            "tsx",
-            "js"
-        ]
-    }
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  }
 }
