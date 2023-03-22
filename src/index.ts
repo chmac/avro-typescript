@@ -35,7 +35,7 @@ export function convertPrimitive(avroType: string): string {
     case "float":
       return "number";
     case "bytes":
-      return "Uint8Array";
+      return "Buffer";
     case "null":
       return "null";
     case "boolean":
